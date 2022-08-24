@@ -18,3 +18,19 @@ defineVersions {
 
     "logback".."1.2.11"
 }
+
+configure(subprojects) {
+    apply(plugin = "maven-publish")
+
+    group = "dev.brella"
+
+    configure<PublishingExtension> {
+        repositories {
+            maven(url = "${rootProject.buildDir}/repo")
+        }
+
+        publications {
+            create<MavenPublication>("maven")
+        }
+    }
+}
